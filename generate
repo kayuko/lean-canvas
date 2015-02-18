@@ -1,0 +1,25 @@
+<?php
+require_once __DIR__.'/vendor/autoload.php';
+
+use Kayuko\LeanCanvas\DataSource;
+use Kayuko\LeanCanvas\Generator;
+
+
+if (!isset($argv[1])) {
+    echo 'source path missing',"\n";
+    exit(-1);
+}
+
+
+$data_source = new DataSource($argv[1]);
+
+if (!$data_source->checkSourceFiles()) {
+    exit(-1);
+}
+
+$generator = new Generator(
+    new \Odf($data_source->getTemplate()),
+    $data_source->getCellsContents()
+);
+
+$generator->generate($data_source->source_path.'canvas-'.date('Ymd-His'));

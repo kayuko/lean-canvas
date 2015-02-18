@@ -1,0 +1,10 @@
+{
+    "require": {
+        "cybermonde/odtphp": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kayuko\\LeanCanvas\\": "src/"
+        }
+    }
+}
